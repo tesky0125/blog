@@ -1,1 +1,15 @@
-git checkout -b gh-pages origin/gh-pages
+git branch -a
+
+git branch 
+
+git branch newbranch
+
+git push origin newbranch
+
+git checkout newbranch
+
+git remote -v
+
+git checkout -b remotebranch origin/remotebranch
+
+git push origin head:remotebranch
