@@ -1,15 +1,20 @@
+git branch 
+git branch -r
 git branch -a
 
-git branch 
+git branch localbranch
+git checkout localbranch
+git push origin localbranch
 
-git branch newbranch
+git checkout -b localbranch origin/remotebranch
 
-git push origin newbranch
+git pull origin master:master
+git pull origin localbranch:remotebranch
 
-git checkout newbranch
+git push origin head:remotebranch
+
+git push origin :remotebranch
 
 git remote -v
 
-git checkout -b remotebranch origin/remotebranch
 
-git push origin head:remotebranch
