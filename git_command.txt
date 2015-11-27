@@ -1,0 +1,123 @@
+常用git命令：
+#从远程库地址克隆到本地库，并checkout到默认master分支
+git clone url
+
+#添加远程库地址
+git remote add origin url
+#查看远程库地址
+git remote -v
+
+#更新本地库(master分支)
+git fetch origin
+git fetch origin master
+
+#根据远程分支创建本地分支并切换到该分支
+git checkout -b localbranch origin/remotebranch
+git checkout -b master origin/master
+#根据远程分支创建本地跟踪分支并切换到该分支
+git checkout --track origin/master
+
+#查看本地/远程库
+git branch 
+git branch -l
+git branch -r
+git branch -a
+
+#新建本地分支
+git branch localbranch(create branch)
+#切换本地分支
+git checkout localbranch
+
+#从远程分支pull代码
+git pull origin remotebranch:localbranch
+git pull origin master:master
+
+#将本地分支push到远程分支
+git push origin localbranch:remotebranch
+git push origin master:master
+git push origin head:refs/for/master(gerrit)
+
+#删除分支
+git branch -d branchname(delete branch)
+#删除远程分支
+git push origin :remotebranch
+git push origin --delete remotebranch
+
+#设置远程分支head指针
+git remote set-head  origin master
+#删除远程分支head指针
+git remote set-head -d origin
+
+#将已修改的文件撤销
+git checkout -- file(discard modified)
+#将已修改的文件添加到暂存区
+git add file(stage file to index)
+
+#将文件从本地库中移除，并删除本地文件
+git rm(remove from index & working tree)
+#将文件从本地库中移除
+git rm --cached(remove from index)
+#删除本地文件
+rm(delete file)
+
+#从远程库拉去代码到本地库并合并到暂存区，默认以merge方式
+git pull (--rebase)
+#从远程库拉取代码到本地库，但不做合并
+git fetch origin
+#以merge方式合并，只有一次提交记录
+git merge branchname
+#以rebase方式合并，保持两个分支所有记录
+git rebase branchname
+
+#解完冲突后继续rebase
+git rebase --continue
+git rebase --abort
+
+#提交到本地库
+git commit -m 'message'
+#追加到上次提交
+git commit --amend
+
+#撤销已经提交的代码
+git revert(will log in remote repository)
+
+#从暂存区移除
+git reset HEAD file(unstage from index)
+
+#将本地代码回退到已提交的某次commit-id
+git reset --mixed commit-id -- (reset commit has commmited)
+git reset --hard commit-id --
+
+#查看提交log
+git log
+git log --stat 
+git log --author 
+
+#为某次提交添加tag
+git tag
+
+#将另一分支上的某次提交提取到当前分支
+git cherry-pick
+
+#git stash
+git stash list
+git stash save --keep-index --include-untracked 'message'
+git stash drop statsh@{x}
+git stash pop
+git stash apply --index statsh@{x}
+git stash clear
+
+#本地新建git库，并提交到远程库
+1.git init
+2.git add .
+3.git commit -m 'init'
+4.git remote add origin url
+5.git push -u origin master
+
+#常用修改提交pull/push操作
+1.git stash save
+2.git pull --rebase
+3.git stash pop
+4.git add .
+5.git commit -m  'message'
+6.git push origin head:refs/for/master
